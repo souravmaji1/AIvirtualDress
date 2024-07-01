@@ -6,6 +6,8 @@ import { Bricolage_Grotesque } from 'next/font/google'
 import { Space_Mono } from 'next/font/google'
 import { Menu, X } from 'lucide-react';
 import { useState } from "react"
+import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu"
+import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 
 const fontBodyBold = Space_Mono({
   subsets: ['latin'],
@@ -56,34 +58,63 @@ const toggleMenu = () => {
 };
   return (
     <div className="flex flex-col min-h-[100dvh]">
-    <header className="px-4 lg:px-6 h-14 flex items-center border-b relative">
-      <div className="flex items-center">
-        <img src="/logoone.png" alt="Logo" className="h-8 w-auto mr-2" />
-        <h1 className={`text-2xl font-bold ${fontBold.className}`}>DressMeUp</h1>
-      </div>
-      <Button
-        className="ml-auto lg:hidden"
-        variant="ghost"
-        size="icon"
-        onClick={toggleMenu}
-        aria-label="Toggle menu"
-      >
-        {isMenuOpen ? <X /> : <Menu />}
-      </Button>
-      <nav className={`${
-        isMenuOpen ? 'flex' : 'hidden'
-      } lg:flex flex-col lg:flex-row absolute lg:relative top-14 lg:top-0 left-0 right-0 bg-black lg:bg-transparent z-50 lg:ml-auto gap-4 p-4 lg:p-0 border-b lg:border-b-0 items-center flex-wrap`}>
-        {['Features', 'Gallery', 'Pricing', 'Contact'].map((item) => (
-          <Link
-            key={item}
-            href="#"
-            className={`text-sm font-medium hover:underline underline-offset-4 ${fontBody.className}`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {item}
-          </Link>
-        ))}
+     <header className="px-4 lg:px-6 h-14 flex items-center border-b">
+      <Link href="#" className="flex items-center justify-center" prefetch={false}>
+      <img src="/logoone.png" alt="Logo" className="h-8 w-auto mr-2" />
+        <span className="sr-only">Acme SaaS Platform</span>
+      </Link>
+      <nav className="ml-auto hidden lg:flex gap-4">
+        <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+          Features
+        </Link>
+        <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+          Pricing
+        </Link>
+        <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+          About
+        </Link>
+        <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+          Contact
+        </Link>
       </nav>
+      <div className="ml-auto hidden lg:flex gap-4">
+      <Link href="/dress">
+            <Button variant="outline" className={`w-full ${fontBody.className}`}>Sign in</Button>
+            </Link>
+            <Link href="/dress">
+            <Button className={`w-full ${fontBody.className}`} style={{background:"#005F8F"}}>Sign Up</Button>
+            </Link>
+      </div>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" size="icon" className="ml-auto lg:hidden">
+            <MenuIcon className="h-6 w-6" />
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right">
+          <nav className="flex flex-col gap-4">
+            <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+              Features
+            </Link>
+            <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+              Pricing
+            </Link>
+            <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+              About
+            </Link>
+            <Link href="#" className={`text-sm font-medium ${fontBody.className}`} prefetch={false}>
+              Contact
+            </Link>
+            <Link href="/dress">
+            <Button variant="outline" className={`w-full ${fontBody.className}`}>Sign in</Button>
+            </Link>
+            <Link href="/dress">
+            <Button className={`w-full ${fontBody.className}`} style={{background:"#005F8F"}}>Sign Up</Button>
+            </Link>
+          </nav>
+        </SheetContent>
+      </Sheet>
     </header>
       <main className="flex-1">
         <section className="w-full py-6 md:py-12 lg:py-16 xl:py-24">
@@ -413,6 +444,46 @@ function SaladIcon(props) {
       <path d="M11.38 12a2.4 2.4 0 0 1-.4-4.77 2.4 2.4 0 0 1 3.2-2.77 2.4 2.4 0 0 1 3.47-.63 2.4 2.4 0 0 1 3.37 3.37 2.4 2.4 0 0 1-1.1 3.7 2.51 2.51 0 0 1 .03 1.1" />
       <path d="m13 12 4-4" />
       <path d="M10.9 7.25A3.99 3.99 0 0 0 4 10c0 .73.2 1.41.54 2" />
+    </svg>
+  )
+}
+
+function MountainIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+    </svg>
+  )
+}
+
+function MenuIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
     </svg>
   )
 }
