@@ -1,6 +1,9 @@
 import { Client } from "@gradio/client";
 import { NextResponse } from 'next/server';
 
+// Maximum time (in milliseconds) to wait for the Gradio client
+const GRADIO_TIMEOUT = 50000; // 50 seconds
+
 export async function POST(req) {
   try {
     console.log("API route called");
@@ -20,19 +23,36 @@ export async function POST(req) {
 
     console.log("Files converted to ArrayBuffer");
 
-    const app = await Client.connect("yisol/IDM-VTON");
+    // Connect to Gradio client with a timeout
+    const connectWithTimeout = async () => {
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Connection timeout')), GRADIO_TIMEOUT)
+      );
+      const connectionPromise = Client.connect("yisol/IDM-VTON");
+      return Promise.race([connectionPromise, timeoutPromise]);
+    };
+
+    const app = await connectWithTimeout();
     console.log("Connected to Gradio client");
 
-    const result = await app.predict("/tryon", [
-      {"background": new Blob([backgroundBlob]), "layers": [], "composite": null},
-      new Blob([garmentBlob]),
-      "Hello!!",
-      true,
-      true,
-      20,
-      20,
-    ]);
+    // Perform prediction with a timeout
+    const predictWithTimeout = async () => {
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Prediction timeout')), GRADIO_TIMEOUT)
+      );
+      const predictionPromise = app.predict("/tryon", [
+        {"background": new Blob([backgroundBlob]), "layers": [], "composite": null},
+        new Blob([garmentBlob]),
+        "Hello!!",
+        true,
+        true,
+        20,
+        20,
+      ]);
+      return Promise.race([predictionPromise, timeoutPromise]);
+    };
 
+    const result = await predictWithTimeout();
     console.log("Prediction result:", JSON.stringify(result, null, 2));
 
     if (Array.isArray(result.data) && result.data.length >= 2) {

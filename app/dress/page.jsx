@@ -12,7 +12,6 @@ import checkoutCredits from '@/utils/actions/checkout.actions'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertTriangle, ShoppingBag } from "lucide-react"
 import Link from "next/link"
-import axios from "axios";
 
 
 const supabase = createClient(
@@ -211,10 +210,9 @@ export default function Component() {
   
       try {
         console.log("Sending request to /api/tryon");
-        const response = await axios.post('/api/tryon', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
+        const response = await fetch(`/api/tryon`, {
+          method: 'POST',
+          body: formData,
         });
   
         console.log("Response received:", response);
