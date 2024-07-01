@@ -209,7 +209,7 @@ export default function Component() {
   
       try {
         console.log("Sending request to /api/tryon");
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/tryon`, {
+        const response = await fetch(`https://dressmeupai.vercel.app/api/tryon`, {
           method: 'POST',
           body: formData,
         });
