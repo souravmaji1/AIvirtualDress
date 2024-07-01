@@ -210,7 +210,7 @@ export default function Component() {
   
       try {
         console.log("Sending request to /api/tryon");
-        const response = await fetch(`http://localhost:4000/api/tryon`, {
+        const response = await fetch(`/api/tryon`, {
           method: 'POST',
           body: formData,
         });
