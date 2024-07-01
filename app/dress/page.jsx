@@ -12,6 +12,8 @@ import checkoutCredits from '@/utils/actions/checkout.actions'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertTriangle, ShoppingBag } from "lucide-react"
 import Link from "next/link"
+import axios from "axios";
+
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -209,9 +211,10 @@ export default function Component() {
   
       try {
         console.log("Sending request to /api/tryon");
-        const response = await fetch(`https://dressmeupai.vercel.app/api/tryon`, {
-          method: 'POST',
-          body: formData,
+        const response = await axios.post('/api/tryon', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         });
   
         console.log("Response received:", response);
