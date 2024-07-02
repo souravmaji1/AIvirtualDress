@@ -100,7 +100,6 @@ export default function Component() {
               .insert({
                 userid: user.id,
                 email: user.primaryEmailAddress?.emailAddress,
-                name: user.firstName,
                 credits: 100
               })
               .single();
