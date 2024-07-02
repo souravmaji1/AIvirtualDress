@@ -16,7 +16,8 @@ export default function DocumentGenerator() {
   const [additionalTerms, setAdditionalTerms] = useState('');
   const [generatedDocument, setGeneratedDocument] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  const [customDocumentType, setCustomDocumentType] = useState('');
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -41,7 +42,7 @@ export default function DocumentGenerator() {
       9. Entire Agreement
       10. Signatures
 
-      Make sure the language is formal, precise, and legally sound. Include standard clauses typically found in a ${documentType}. The document should be complete and ready for signing.`;
+      The document should be complete and ready for signing.`;
 
       const result = await chatSession.sendMessage(prompt);
       const response = await result.response;
@@ -170,9 +171,21 @@ export default function DocumentGenerator() {
               <SelectItem value="non-disclosure-agreement">Non-Disclosure Agreement (NDA)</SelectItem>
               <SelectItem value="freelancer-agreement">Freelancer Agreement</SelectItem>
               <SelectItem value="employment-contract">Employment Contract</SelectItem>
+              <SelectItem value="custom">Custom Document</SelectItem>
             </SelectContent>
           </Select>
         </div>
+        {documentType === 'custom' && (
+          <div>
+            <Label htmlFor="customDocumentType">Custom Document Type</Label>
+            <Input 
+              id="customDocumentType" 
+              value={customDocumentType} 
+              onChange={(e) => setCustomDocumentType(e.target.value)} 
+              placeholder="Enter custom document type"
+            />
+          </div>
+        )}
         <div>
           <Label htmlFor="partyA">Party A (Your Company)</Label>
           <Input id="partyA" value={partyA} onChange={(e) => setPartyA(e.target.value)} placeholder="Enter your company name" />
