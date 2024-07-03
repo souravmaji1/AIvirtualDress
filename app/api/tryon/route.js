@@ -23,6 +23,8 @@ export async function POST(req) {
     const app = await Client.connect("dryade36513/ClothStudio");
     console.log("Connected to Gradio client");
 
+    //dryade36513/ClothStudio
+
     const result = await app.predict("/tryon", [
       {"background": new Blob([backgroundBlob]), "layers": [], "composite": null},
       new Blob([garmentBlob]),

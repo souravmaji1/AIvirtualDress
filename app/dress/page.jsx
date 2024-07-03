@@ -244,6 +244,10 @@ export default function Component() {
       } catch (error) {
         console.error("An error occurred:", error);
         setError(error.message);
+        setAlertInfo({
+          title: "API Error",
+          description: "The line is busy. Please wait for a couple of hours and try again."
+        });
       } finally {
         setIsLoading(false);
       }
