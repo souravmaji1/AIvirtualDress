@@ -20,7 +20,7 @@ export async function POST(req) {
 
     console.log("Files converted to ArrayBuffer");
 
-    const app = await Client.connect("yisol/IDM-VTON");
+    const app = await Client.connect("dryade36513/ClothStudio");
     console.log("Connected to Gradio client");
 
     const result = await app.predict("/tryon", [
