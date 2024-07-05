@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <Head>
+        <head>
         <meta name="google-site-verification" content="onvUyUpxsVaOX8GSrFN6nCQoO5AAcaxK9F_XGNtl9O4" />
         <script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
         <Script
@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
               gtag('config', 'G-SWE283609G');
             `}
         </Script>
-        </Head>
+        </head>
         <body>
           <Toaster />
           {children}
