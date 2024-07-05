@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <Head>
-        <meta name="google-site-verification" content="vMeZCAopXXa2mFglipcO1IqdC4QAN8lZzybOaUbibl8" />
+        <meta name="google-site-verification" content="onvUyUpxsVaOX8GSrFN6nCQoO5AAcaxK9F_XGNtl9O4" />
         <script src="https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js"></script>
         <Script
             src="https://www.googletagmanager.com/gtag/js?id=G-SWE283609G"
