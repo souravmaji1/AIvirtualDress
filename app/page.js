@@ -568,17 +568,12 @@ const handleSubmit = async () => {
         <p className={`text-xs text-muted-foreground ${fontBodyBold.className}  `}>&copy; 2024 DressMeUp. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link href="#" className={`text-xs hover:underline underline-offset-4 ${fontBody.className}  `} prefetch={false}>
-            Pricing
+           
           </Link>
           <Link href="#" className={`text-xs hover:underline underline-offset-4 ${fontBody.className}  `} prefetch={false}>
-            About
+          Contact: digisharkclub@gmail.com
           </Link>
-          <Link href="#" className={`text-xs hover:underline underline-offset-4 ${fontBody.className}  `} prefetch={false}>
-            Contact
-          </Link>
-          <Link href="#" className={`text-xs hover:underline underline-offset-4 ${fontBody.className}  `} prefetch={false}>
-            Privacy
-          </Link>
+          
         </nav>
       </footer>
     </div>
